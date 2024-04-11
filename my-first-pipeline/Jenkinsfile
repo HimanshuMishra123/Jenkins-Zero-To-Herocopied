@@ -8,5 +8,20 @@ pipeline {
         sh 'node --version'
       }
     }
+    stage('Test') {
+      steps {
+        sh 'node --version'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'kubectl apply -f deployment.yml'
+      }
+    }
+    stage('Quality') {
+      steps {
+        sh 'some sonar wala command'
+      }
+    }
   }
 }
