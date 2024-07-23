@@ -18,7 +18,7 @@ Steps:
     1. Install the necessary Jenkins plugins:
        1.1 Git plugin
        1.2 Maven Integration plugin
-       1.3 Pipeline plugin
+       1.3 Docker Pipeline plugin
        1.4 Kubernetes Continuous Deploy plugin
 
     2. Create a new Jenkins pipeline:
