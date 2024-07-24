@@ -19,6 +19,13 @@ Execute the Maven targets to generate the artifacts
 ```
 mvn clean package
 ```
+The command `mvn clean package` is a Maven command used in Java projects to clean and build the project. Here's a simple explanation of what it does:
+
+1. **clean**: This step deletes any files generated from previous builds. It cleans up the `target` directory, which typically contains compiled code, previous build outputs, and other temporary files. This ensures that the next build is fresh and not affected by any leftover artifacts from previous builds.
+
+2. **package**: This step compiles the source code, runs tests, and packages the compiled code into a deliverable format, such as a JAR (Java Archive) or WAR (Web Archive) file, which can be deployed. This packaged file is placed in the `target` directory.
+
+In summary, `mvn clean package` first cleans the project and then builds it, producing a fresh package for deployment.
 
 The above maven target stroes the artifacts to the `target` directory. You can either execute the artifact on your local machine
 (or) run it as a Docker container.
