@@ -104,7 +104,10 @@ Example Configuration in GitHub:
      ```
      These commands can be run in the Docker container, utilizing the pre-built environment.
 
-   - **Unit Testing**: Test your code for specific functionatlity
+     ** Maven surefire plugin acts as a bridge between Maven and the actual testing frameworks, such as JUnit or TestNG, which are the tools specifically designed for writing and running unit tests.<br/>
+     ** The jacoco-maven-plugin collects coverage data during the tests and generates a report.<br/>
+
+   - **Unit Testing**: Done with Build
    - **Static Code Analysis**:
      - Runs static code analysis tools (like SonarQube) to ensure no vulnerabilities are introduced.
    - **Security Analysis**:
