@@ -181,7 +181,7 @@ pipeline {
 #### Plugins and Tools
 - **Maven Plugin**: Used for building Java applications.
 - **Docker Pipeline Agent**: Utilized to avoid local installations of tools. Docker images come pre-configured with required dependencies.
-- **SonarQube**: For static code analysis to ensure code quality and security.
+- **SonarQube scanner**: For static code analysis to ensure code quality and security.
 - **Email Extension Plugin**: For sending build notifications.
 
 
