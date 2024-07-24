@@ -71,9 +71,9 @@ cd sonarqube-9.4.0.54424/bin/linux-x86-64/
 if unzip* fails `sudo apt install unzip` 
 `cd sonarqube-9.4.0.54424/bin` if you are not sure about architecture then cd to your arch. example `cd sonarqube-9.4.0.54424/bin/linux-x86-64/`
 
-Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000` 
-Sonar server start on port 9000 by default. so open port 9000 in inbound rules under security groups to access sonar UI.
-Sonar server default username is admin and password is admin.>> crete your new password and enter.
+Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000` <br/>
+Sonar server start on port 9000 by default. so open port 9000 in inbound rules under security groups to access sonar UI.<br/>
+Sonar server default username is admin and password is admin.>> crete your new password and enter.<br/>
 
 You can setup Sonar server any where only thing is your AWS should have connectivity to it.<br/>
 In organization, setup sonar server in same VPC(else you have to do lot of networking configurations i.e. network Ingress ,VPC pairing etc) with only private IP where your jenkis server and other things are related to your project. 
