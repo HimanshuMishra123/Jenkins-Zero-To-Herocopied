@@ -90,9 +90,20 @@ Example Configuration in GitHub:
 - Select the events that will trigger the webhook
 ```
 3. **Jenkins Pipeline Stages**:
-   - **Build Stage**:
+   - **Build Stage**: **(you can skip the installations and configurations because Docker images  already contains all the necessary dependencies(example maven), configurations, and applications required for your workflow )
      - Uses Maven to build the Java application.
-     - Executes unit tests during the build process.
+     - Executes unit tests during the build process.(Maven+ Maven surefire Plugin +Junit +Jacoco)
+     - for unit test in build process include the Maven Surefire Plugin, JUnit, and JaCoCo dependencies in your pom.xml.
+     - Skip the mvn clean install or mvn package commands if the code is already compiled and available in the Docker image.
+     -Directly run tests and generate reports using:
+
+     ```sh
+     mvn test
+     mvn surefire-report:report
+     mvn jacoco:report
+     ```
+     These commands can be run in the Docker container, utilizing the pre-built environment.
+
    - **Unit Testing**: Test your code for specific functionatlity
    - **Static Code Analysis**:
      - Runs static code analysis tools (like SonarQube) to ensure no vulnerabilities are introduced.
