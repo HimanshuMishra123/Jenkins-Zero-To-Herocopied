@@ -19,7 +19,8 @@ Steps:
        1.1 Git plugin
        1.2 Maven Integration plugin
        1.3 Docker Pipeline plugin
-       1.4 Kubernetes Continuous Deploy plugin
+       1.4 SonarQube scanner plugin
+       1.5 Kubernetes Continuous Deploy plugin
 
     2. Create a new Jenkins pipeline:
        2.1 In Jenkins, create a new pipeline job and configure it with the Git repository URL for the Java application.
@@ -179,7 +180,7 @@ pipeline {
 
 #### Plugins and Tools
 - **Maven Plugin**: Used for building Java applications.
-- **Docker Agent**: Utilized to avoid local installations of tools. Docker images come pre-configured with required dependencies.
+- **Docker Pipeline Agent**: Utilized to avoid local installations of tools. Docker images come pre-configured with required dependencies.
 - **SonarQube**: For static code analysis to ensure code quality and security.
 - **Email Extension Plugin**: For sending build notifications.
 
