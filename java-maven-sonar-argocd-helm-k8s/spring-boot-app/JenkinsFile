@@ -8,15 +8,18 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        sh 'echo passed'
+        sh 'echo passed'      // As we kept jenkins file in same source code repo so jenkins will eventually checkout the repo so just pass this step otherwise just uncomment the below command.
         //git branch: 'main', url: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git'
       }
     }
     stage('Build and Test') {
       steps {
-        sh 'ls -ltr'
+        sh 'ls -ltr'        // no need to install build tool as that alreday comes with the docker image, you can even ignore ls -ltr as well
         // build the project and create a JAR file
-        sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
+        // `mvn clean package` this maven target will find th pom.xml file(having all the dependencies/requirements for the code to run which will be downloaded from internet, it is mostly written by developer or sometime devops also)
+        //`mvn clean package` or `mvn clean install` maven target will download each and every package from the internet depending upon the versions and depending upon the things that are provided in pom.xml and it will help Java in building the application. Building is basically creating  Java archive or web archive or Enterprise archive. these are all jar or ear or war files now how are these files/artifacts created that is basically using Maven and pom.xml. 
+        // a new floder Target will be created in app folder/repo and inside this target folder the artifact is created/saved.  if you do `ls target`  you will see jar file and this file we have used in the docker file as well  to create docker image.
+        sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'   
       }
     }
     stage('Static Code Analysis') {
@@ -26,9 +29,11 @@ pipeline {
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
           sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+        // mvn sonar:sonar maven target is to execute sonar, for that it will need sonar authentication token(saved in Jenkins credentials) and sonar URL.
         }
       }
     }
+    // for below we need Docker credentials/Access_Token (saved in Jenkins for use, same as sonar)
     stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "abhishekf5/ultimate-cicd:${BUILD_NUMBER}"
@@ -45,6 +50,8 @@ pipeline {
         }
       }
     }
+    //for deployment or manifest repo image update you can use shell script as below or ansible or argo image updater(recommended)
+    // for below we need github credentials/Access_Token (saved in Jenkins for use, same as sonar)
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "Jenkins-Zero-To-Hero"

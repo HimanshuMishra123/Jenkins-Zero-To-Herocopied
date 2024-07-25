@@ -103,8 +103,10 @@ Jenkins Installation is Successful. You can now starting using the Jenkins
    
 <img width="1392" alt="Screenshot 2023-02-01 at 12 17 02 PM" src="https://user-images.githubusercontent.com/43399466/215973898-7c366525-15db-4876-bd71-49522ecb267d.png">
 
-Wait for the Jenkins to be restarted.
+Wait for the Jenkins to be restarted.<br/>
 
+
+**For Jenkins to authenticate with Docker we need docker credentials** goto jenkins UI>> manage Jenkins>> manage credentials>> under 'stores scoped to Jenkins' click on system>> click on global credentials>> click on add credentials>> under kind select 'username with password'>> username as dockerhub username>> password as dockerhub password>> ID as per choice which you will call in jenkins script>> create<br/>
 
 ## Docker Slave Configuration
 
@@ -156,7 +158,8 @@ cd sonarqube-9.4.0.54424/bin/linux-x86-64/
 Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000` <br/>
 Sonar server start on port 9000 by default. so open port 9000 in inbound rules under security groups to access sonar UI.<br/>
 Sonar server default username is admin and password is admin.>> crete your new password and enter.<br/>
-For jenkins to authenticate with sonar with need access token>> goto sonarqube UI>> goto myaccount>> security>>Generate token(provide any token name)>> copy the token >> goto jenkins UI>> manage Jenkins>> manage credentials>> click on system>>click on global credentials>> click on add credentials>> under kind select `secret text`>> under secret paste the Token>> in ID provide name `sonarqube`>> click on create >> Done with Sonarqube configuration
+
+**For jenkins to authenticate with sonar with need access token**>> goto sonarqube UI>> goto myaccount>> security>> Generate token(provide any token name)>> copy the token >> goto jenkins UI>> manage Jenkins>> manage credentials>> under 'stores scoped to Jenkins' click on system>> click on global credentials>> click on add credentials>> under kind select `secret text`>> under secret paste the Token>> in ID provide name `sonarqube`>> click on create >> Done with Sonarqube configuration<br/>
 
 Once you are done with the above steps, it is better to restart Jenkins.
 

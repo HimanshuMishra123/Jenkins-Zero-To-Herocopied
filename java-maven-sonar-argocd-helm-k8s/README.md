@@ -138,7 +138,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Using Maven to build the application
+                // Using Maven to build the application, it cleans the project and then builds it, producing a fresh package for deployment
                 sh 'mvn clean package'
             }
         }
