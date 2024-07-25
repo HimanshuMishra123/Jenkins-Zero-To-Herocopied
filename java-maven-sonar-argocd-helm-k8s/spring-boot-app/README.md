@@ -80,7 +80,7 @@ cd sonarqube-9.4.0.54424/bin/linux-x86-64/
 Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000` <br/>
 Sonar server start on port 9000 by default. so open port 9000 in inbound rules under security groups to access sonar UI.<br/>
 Sonar server default username is admin and password is admin.>> crete your new password and enter.<br/>
-For jenkins to authenticate with sonar with need access token>> goto sonarqube UI>> goto myaccount>> security>>Generate token(provide any token name)>> copy the token >> goto jenkins UI>> manage Jenkins>> manage credentials>> click on system>>click on global credentials>> click on add credentials>> under kind select `secret text`>> under secret paste the Token>> in ID provide name `sonarqube`>> click on create >> Done with Sonarqube configuration
+**For jenkins to authenticate with sonar it need access token**>> goto sonarqube UI>> goto myaccount>> security>>Generate token(provide any token name)>> copy the token >> goto jenkins UI>> manage Jenkins>> manage credentials>> click on system>>click on global credentials>> click on add credentials>> under kind select `secret text`>> under secret paste the Token>> in ID provide name `sonarqube`>> click on create >> Done with Sonarqube configuration
 
-
+**For jenkins to authenticate with github it need access token**goto github>> settings page>> in side-pane click on 'developer setting'>> personal access token>> Token(classic)>> generate new token(classic)>>provide name and select fields and generate and copy >>goto jenkins UI>> manage Jenkins>> manage credentials>> under 'stores scoped to Jenkins' click on system>> click on global credentials>> click on add credentials>> under kind select 'secret text'>>under secret paste the github access Token  >> ID as per choice which you will call in jenkins script>> create
 

@@ -52,6 +52,7 @@ pipeline {
     }
     //for deployment or manifest repo image update you can use shell script as below or ansible or argo image updater(recommended)
     // for below we need github credentials/Access_Token (saved in Jenkins for use, same as sonar)
+    // goto github>> settings page>> in side-pane click on 'developer setting'>> personal access token>> Token(classic)>> generate new token(classic)>>provide name and select fields and generate and copy >>goto jenkins UI>> manage Jenkins>> manage credentials>> under 'stores scoped to Jenkins' click on system>> click on global credentials>> click on add credentials>> under kind select 'secret text'>>under secret paste the github access Token  >> ID as per choice which you will call in jenkins script>> create
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
