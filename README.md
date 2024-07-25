@@ -132,6 +132,36 @@ http://<ec2-instance-public-ip>:8080/restart
 
 The docker agent configuration is now successful.
 
+### To Configure a Sonar Server :
+You can setup Sonar server any where only thing is your AWS should have connectivity to it.<br/>
+In organization, setup sonar server in same VPC(else you have to do lot of networking configurations i.e. network Ingress ,VPC pairing etc) with only private IP where your jenkis server and other things are related to your project. <br/>
 
+apply commands one by one.
+```
+sudo apt install unzip
+adduser sonarqube
+sudo -su sonarqube
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.4.0.54424.zip
+ls
+unzip *
+ls
+chmod -R 755 /home/sonarqube/sonarqube-9.4.0.54424
+chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-9.4.0.54424
+cd sonarqube-9.4.0.54424/bin/linux-x86-64/
+./sonar.sh start
+```
+`wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.4.0.54424.zip` you can use latest version of sonar instead the one mentioned just update the version.
+`cd sonarqube-9.4.0.54424/bin` if you are not sure about architecture then cd to your arch. example `cd sonarqube-9.4.0.54424/bin/linux-x86-64/`
+
+Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000` <br/>
+Sonar server start on port 9000 by default. so open port 9000 in inbound rules under security groups to access sonar UI.<br/>
+Sonar server default username is admin and password is admin.>> crete your new password and enter.<br/>
+For jenkins to authenticate with sonar with need access token>> goto sonarqube UI>> goto myaccount>> security>>Generate token(provide any token name)>> copy the token >> goto jenkins UI>> manage Jenkins>> manage credentials>> click on system>>click on global credentials>> click on add credentials>> under kind select `secret text`>> under secret paste the Token>> in ID provide name `sonarqube`>> click on create >> Done with Sonarqube configuration
+
+Once you are done with the above steps, it is better to restart Jenkins.
+
+```
+http://<ec2-instance-public-ip>:8080/restart
+```
 
 

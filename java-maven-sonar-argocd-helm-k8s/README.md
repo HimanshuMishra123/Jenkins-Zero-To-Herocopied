@@ -116,10 +116,10 @@ Example Configuration in GitHub:
 
    - **Unit Testing**: Done with Build
    - **Static Code Analysis**:
-     - Runs static code analysis tools (like SonarQube) to ensure no vulnerabilities are introduced.
+     - Runs static code analysis tools (like SonarQube) to ensure no vulnerabilities are introduced. For sonarqube installation refer Repo root readme.md
    - **Security Analysis**:
      - Uses SAST (Static Application Security Testing) and DAST (Dynamic Application Security Testing) tools to check for security vulnerabilities.
-   - **Functional Testing**: end to end testing 
+   - **Functional Testing**: end to end testing (these Modern Day applications like if you're dealing with python or any other things you have some inbuilt modules to execute in end-to-end, or if you are using Robot Framework or something then you need to do additional configuration of the tools like selenium, HP UFT etc.)
    - **Reporting**: To generate reports of above steps
    - **Build Image**: A Docker image is created using shell commands.
    - **Push Image**: The Docker image is then pushed to a container registry (e.g., AWS ECR, Quay.io, Docker Hub).
@@ -206,9 +206,11 @@ pipeline {
      ```
 
 2. **Kubernetes Deployment**:
-   - Use tools like ArgoCD and Argo Image Updater to automate deployments to a Kubernetes cluster.
+   - Use tools like ArgoCD and Argo Image Updater to automate deployments to your already setup Kubernetes cluster.
    - **Argo Image Updater**: Monitors the Docker registry for new images and updates the image in another Git repository dedicated having manifests(deployment.yml etc).
-   - **ArgoCD**: Deploys the updated manifests from the Git repository to the Kubernetes cluster.
+   - **ArgoCD**:
+   - use https://operatorhub.io/operator/argocd-operator to deploy argocd on your kubernetes which will be deployed in operators namespace. For controllers prefer operator way to install as future is this.
+   - Argo cd will watch for updates on manifest repo and Deploys the updated manifests from the Git repository to the Kubernetes cluster.
 
 Example ArgoCD Configuration:
 ```yaml
