@@ -19,6 +19,7 @@ Think of it like a library of books, Instead of buying the same book over and ov
 
 ![Screenshot 2023-05-02 at 9 47 24 PM](https://user-images.githubusercontent.com/43399466/235724851-90a5cad6-ac0d-428b-9944-93fffea55180.png)
 
+-----------------------self notes
 
 ### Jenkins Shared Libraries: Comprehensive Learning Notes
 
@@ -45,7 +46,10 @@ A Shared Library in Jenkins is a repository of common code that can be used acro
 **Structure:**
 1. **`vars` Folder:** Contains Groovy files that define the reusable functions. Each file represents a global variable in the pipeline scripts.
 2. **`src` Folder:** Used for more complex classes and functions, which can be organized into packages.
-3. **`resources` Folder:** Contains additional resources, such as scripts or configuration files, that the shared library might need.
+3. **`resources` Folder:** Contains additional resources, such as scripts or configuration files, that the shared library might need.<br/>
+
+
+- Jenkins shared library is maintained in seprate repo altogether as it is company wide not for single project.
 
 jenkins-shared-library/
 │
@@ -65,6 +69,15 @@ jenkins-shared-library/
 │   └── someResource.txt
 └── README.md
 
+### Configure Jenkins to Use the Shared Library
+1. Add Shared Library to Jenkins:
+
+Go to "Manage Jenkins" > "Configure System."
+Scroll down to "Global Pipeline Libraries" and add a new library.
+Provide the necessary details (e.g., name(ex: my-shared-library), Default version(Branch name: main), Retrieval method: modern SCM, SCM: git, Project repository: Repo URL >> save).
+2. Specify the Library in Your Pipeline:
+
+In your Jenkins pipeline script, load and use the shared library.
 
 **Basic Example:**
 
