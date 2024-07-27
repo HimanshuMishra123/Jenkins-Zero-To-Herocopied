@@ -1,3 +1,5 @@
+![CI_CD Workflow from Dev to Stage to Prod Environments_ Complete CI_CD Process _#abhishekveeramalla 6-50 screenshot](https://github.com/user-attachments/assets/f6bf4bcd-f0f5-4582-b7ea-7c7a5209b568)
+![CI_CD Workflow from Dev to Stage to Prod Environments_ Complete CI_CD Process _#abhishekveeramalla 13-20 screenshot](https://github.com/user-attachments/assets/54e99a42-941e-4595-9dfc-456df367a1db)
 
 
 ## Jenkins CI/CD Workflow Overview
@@ -32,6 +34,9 @@
 - **Release Branches**: Branches used to prepare for releases, containing stable and tested code.
 - **Hotfix Branches**: Special branches for critical fixes in production env.
 
+
+![image](https://github.com/user-attachments/assets/74462d87-0227-4638-a0fe-d99e2c08b6af)
+
 ### Promoting Code to Staging Environment
 1. **Feature to Main Branch**:
    - After changes are verified in the development environment, they are merged into the main branch.
@@ -59,7 +64,7 @@
 - **Security Considerations**: Implement image scanning and penetration testing, especially before production deployment.
 - **Monitoring and Logging**: Set up monitoring and logging in all environments to track performance and identify issues.
 
-
+![image](https://github.com/user-attachments/assets/643f0452-7f9a-4279-a8b6-8fadf574d8ae)
 
 
 **Jenkins multibranch feature** allows you to streamline the CI/CD process by using a single pipeline configuration to manage multiple branches in a project. Instead of creating separate pipelines for each branch, you can define one pipeline that can dynamically discover branches and execute the appropriate stages based on the branch being built.
