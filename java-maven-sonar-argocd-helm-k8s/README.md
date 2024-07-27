@@ -160,10 +160,10 @@ pipeline {
                 // Building Docker image
                 sh 'docker build -t myapp:latest .'
             }
-        stage('Scan') {
+        stage('Trivy Image Scan') {
             steps {
                 script {
-                    // Run Trivy scan
+                    // Script method is used when trivy is configured in (manage jenkins>>configure system) 
                     trivyScan(
                         image: 'myapp:latest',
                         format: 'html',
