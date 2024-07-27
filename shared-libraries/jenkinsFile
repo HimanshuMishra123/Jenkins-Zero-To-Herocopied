@@ -1,0 +1,56 @@
+@Library('my-shared-library') _ // Replace 'my-shared-library' with the name of your shared library
+
+pipeline {
+    agent any
+
+    environment {
+        SONARQUBE_URL_ID = 'sonarqube-url'      // URL can also  kept in secret jenkins credentials like password or token
+        SONARQUBE_CREDENTIALS_ID = 'sonarqube'
+        DOCKER_REGISTRY = 'mydockerhub'
+        IMAGE_NAME = 'myapp:latest'
+        TRIVY_REPORT_FILE = 'trivy-report.json'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                // Your build steps, e.g., Maven or Gradle build
+                echo "Building project..."
+                sh 'mvn clean install'
+            }
+        }
+        stage('SonarQube Test') {
+            steps {
+                script {
+                    sonarQubeScan('path/to/project', SONARQUBE_CREDENTIALS_ID, SONARQUBE_URL_ID)
+                }
+            }
+        }
+        stage('Image Build') {
+            steps {
+                script {
+                    dockerBuild(IMAGE_NAME, 'Dockerfile')
+                }
+            }
+        }
+        stage('Trivy Scan') {
+            steps {
+                script {
+                    trivyScan(IMAGE_NAME, TRIVY_REPORT_FILE)
+                }
+            }
+        }
+        stage('Image Push') {
+            steps {
+                script {
+                    dockerPush(IMAGE_NAME, DOCKER_REGISTRY)
+                }
+            }
+        }
+    }
+}

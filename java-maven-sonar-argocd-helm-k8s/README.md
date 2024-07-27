@@ -160,13 +160,24 @@ pipeline {
                 // Building Docker image
                 sh 'docker build -t myapp:latest .'
             }
-        stage('Trivy Image scan') {
+        stage('Scan') {
             steps {
-                // scanning built image for vulnerabilities
-                //This command will scan the myapp:latest image and save the output in HTML format to a file named report.html. You can then open this HTML file in a web browser to view the detailed vulnerability report.
-                sh 'trivy image -f html -o report.html myapp:latest
- .'
+                script {
+                    // Run Trivy scan
+                    trivyScan(
+                        image: 'myapp:latest',
+                        format: 'html',
+                        outputFile: 'trivy-report.html'
+                    )
+                }
             }
+        }
+        stage('Archive Report') {
+            steps {
+                // Archive the Trivy report
+                archiveArtifacts artifacts: 'trivy-report.html', allowEmptyArchive: true
+            }
+        }
         }
         stage('Push Docker Image') {
             steps {

@@ -58,7 +58,7 @@ Hurray !! Access the application on `http://<ip-address>:8010`
 
 ### Configure a Sonar Server :
 You can setup Sonar server any where only thing is your AWS should have connectivity to it.<br/>
-In organization, setup sonar server in same VPC(else you have to do lot of networking configurations i.e. network Ingress ,VPC pairing etc) with only private IP where your jenkis server and other things are related to your project. <br/>
+In organization, setup sonar server in same VPC(else you have to do lot of networking configurations i.e. network Ingress ,VPC pairing etc) with only private IP where your jenkis server and other things are related to your project. As a standard practise organization setup one sonar server for entire organization or Project(having multiple microservices) <br/>
 
 apply commands one by one.
 ```
@@ -83,4 +83,4 @@ Sonar server default username is admin and password is admin.>> crete your new p
 **For jenkins to authenticate with sonar it need access token**>> goto sonarqube UI>> goto myaccount>> security>>Generate token(provide any token name)>> copy the token >> goto jenkins UI>> manage Jenkins>> manage credentials>> click on system>>click on global credentials>> click on add credentials>> under kind select `secret text`>> under secret paste the Token>> in ID provide name `sonarqube`>> click on create >> Done with Sonarqube configuration
 
 **For jenkins to authenticate with github it need access token**goto github>> settings page>> in side-pane click on 'developer setting'>> personal access token>> Token(classic)>> generate new token(classic)>>provide name and select fields and generate and copy >>goto jenkins UI>> manage Jenkins>> manage credentials>> under 'stores scoped to Jenkins' click on system>> click on global credentials>> click on add credentials>> under kind select 'secret text'>>under secret paste the github access Token  >> ID as per choice which you will call in jenkins script>> create
-
+**For jenkins to authenticate with trivy it need access token**...use similiar logic to setup trivy credentials.
