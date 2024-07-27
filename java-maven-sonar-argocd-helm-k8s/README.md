@@ -122,6 +122,7 @@ Example Configuration in GitHub:
    - **Functional Testing**: end to end testing (these Modern Day applications like if you're dealing with python or any other things you have some inbuilt modules to execute in end-to-end, or if you are using Robot Framework or something then you need to do additional configuration of the tools like selenium, HP UFT etc.)
    - **Reporting**: To generate reports of above steps
    - **Build Image**: A Docker image is created using shell commands.
+   - **Image Scan**: It ensure that your images are scanned for vulnerabilities.(Tools like trivy is used for this,Trivy will scan the docker images afterthe image build stage and publish the report in HTML format so that it's easy to access the report by developers.)
    - **Push Image**: The Docker image is then pushed to a container registry (e.g., AWS ECR, Quay.io, Docker Hub).
 4. **Notifications**:(use email extension plugin)
    - If any stage fails, notifications are sent via email or Slack.
@@ -159,6 +160,13 @@ pipeline {
                 // Building Docker image
                 sh 'docker build -t myapp:latest .'
             }
+        stage('Trivy Image scan') {
+            steps {
+                // scanning built image for vulnerabilities
+                //This command will scan the myapp:latest image and save the output in HTML format to a file named report.html. You can then open this HTML file in a web browser to view the detailed vulnerability report.
+                sh 'trivy image -f html -o report.html myapp:latest
+ .'
+            }
         }
         stage('Push Docker Image') {
             steps {
@@ -182,6 +190,7 @@ pipeline {
 - **Maven Plugin**: Used for building Java applications.
 - **Docker Pipeline Agent**: Utilized to avoid local installations of tools. Docker images come pre-configured with required dependencies.
 - **SonarQube scanner**: For static code analysis to ensure code quality and security.
+- **Trivy Plugin**: for Image scan
 - **Email Extension Plugin**: For sending build notifications.
 
 
@@ -281,6 +290,7 @@ By following these steps, you can set up an efficient and scalable CI/CD pipelin
 - **Jenkins**: For CI/CD pipeline orchestration.
 - **Maven**: For building the Java application.
 - **SonarQube**: For static code analysis.
+- **Trivy Plugin**: for Image scan
 - **SAST and DAST tools**: For security analysis.
 - **Docker**: For containerizing the application.
 - **Container Registry**: AWS ECR, Quay.io, Docker Hub for storing Docker images.
