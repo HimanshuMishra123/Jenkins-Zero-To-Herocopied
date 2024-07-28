@@ -8,14 +8,14 @@ that need it. This can make your code more organized and easier to maintain.
 
 Think of it like a library of books, Instead of buying the same book over and over again, you can borrow it from the library whenever you need it.
 
-## Advantages
+## Advantages of Shared Libraries
 
-- Standarization of Pipelines
-- Reduce duplication of code
-- Easy onboarding of new applications, projects or teams
-- One place to fix issues with the shared or common code
-- Code Maintainence 
-- Reduce the risk of errors
+1. **Reduced Code Duplication:** Common tasks such as checking out code, running tests, or deploying to production are centralized in one location.
+2. **Easier Maintenance:** Changes in one place can be propagated across all pipelines, making it easier to update or fix issues.
+3. **Consistent Quality and Security Practices:** Ensures that all pipelines adhere to the same quality and security standards(Standardization).
+4. **Improved Onboarding:** New team members can easily understand and use existing pipelines, reducing the learning curve.
+5. **Low Code Approach:** By abstracting common tasks, the amount of code written in individual pipelines is reduced, leading to fewer errors and a more streamlined development process.
+6. **Reduce the risk of errors**: as less to code and Standardization so less chances of errors.
 
 ![Screenshot 2023-05-02 at 9 47 24 PM](https://user-images.githubusercontent.com/43399466/235724851-90a5cad6-ac0d-428b-9944-93fffea55180.png)
 
@@ -34,12 +34,6 @@ A Shared Library in Jenkins is a repository of common code that can be used acro
 2. **Reusable Functions:** Encapsulated logic that can be invoked with parameters.
 3. **Standardization:** Ensures that all pipelines follow a consistent structure and practice.
 
-#### Advantages of Using Shared Libraries
-1. **Reduced Code Duplication:** Common tasks such as checking out code, running tests, or deploying to production are centralized in one location.
-2. **Easier Maintenance:** Changes in one place can be propagated across all pipelines, making it easier to update or fix issues.
-3. **Consistent Quality and Security Practices:** Ensures that all pipelines adhere to the same quality and security standards.
-4. **Improved Onboarding:** New team members can easily understand and use existing pipelines, reducing the learning curve.
-5. **Low Code Approach:** By abstracting common tasks, the amount of code written in individual pipelines is reduced, leading to fewer errors and a more streamlined development process.
 
 #### Implementing Shared Libraries
 
