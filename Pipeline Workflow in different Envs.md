@@ -23,23 +23,23 @@
 3. **Kubernetes Manifest Update**:
    - Update the Kubernetes deployment manifests (e.g., `deployment.yaml`) with the new image version.
    - Use a separate Git repository for manifests.
-   - Optionally, use Helm charts for deployment and update the `values.yaml` file.
+   - Optionally,you can  use Helm charts for deployment and update the `values.yaml` file in manifest repo.
 
 4. **Deployment to Development Environment**:
-   - Deploy the application to the development environment's Kubernetes cluster using tools like Argo CD.
+   - Deploy the application to the development environment's Kubernetes cluster using gitops tools like Argo CD, Flux, or Spinnaker.
 
 ### Branching Strategy
 - **Feature Branches**: Separate branches for new features or enhancements.
 - **Main Branch**: The branch where active development occurs, integrating changes from various feature branches.
 - **Release Branches**: Branches used to prepare for releases, containing stable and tested code.
 - **Hotfix Branches**: Special branches for critical fixes in production env.
-
+For example, if there's a critical bug in the iOS 15 release, a hotfix branch is created, and changes are merged into the main, feature, and release branches.
 
 ![image](https://github.com/user-attachments/assets/74462d87-0227-4638-a0fe-d99e2c08b6af)
 
 ### Promoting Code to Staging Environment
 1. **Feature to Main Branch**:
-   - After changes are verified in the development environment, they are merged into the main branch.
+   - After changes are verified in the development environment(feature branch), they are merged into the main branch.
    - A different Jenkins pipeline triggers, deploying the application to a staging environment.
 
 2. **Staging Environment**:
@@ -73,4 +73,4 @@ This approach simplifies the management of Jenkins pipelines by reducing the dup
 
 In the context of Jenkins multibranch pipelines, you can also use tools like Argo CD to manage deployments across different environments. By using different folders or Helm charts in your Git repository for each environment (development, staging, pre-production, and production), you can set up Argo CD to monitor these folders and deploy the applications accordingly. This setup ensures a consistent deployment process across all environments and allows for easy scaling and management of your applications.
 
-This method not only simplifies the pipeline setup but also ensures that the CI/CD process is more streamlined and efficient, reducing the need for multiple pipelines and providing a clear and organized approach to managing code changes across various environments【13:3†source】.
+This method not only simplifies the pipeline setup but also ensures that the CI/CD process is more streamlined and efficient, reducing the need for multiple pipelines and providing a clear and organized approach to managing code changes across various environments.
