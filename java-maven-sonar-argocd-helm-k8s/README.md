@@ -201,7 +201,7 @@ pipeline {
 - **Maven Plugin**: Used for building Java applications.
 - **Docker Pipeline Agent**: Utilized to avoid local installations of tools. Docker images come pre-configured with required dependencies.
 - **SonarQube scanner**: For static code analysis to ensure code quality and security.
-- **Trivy Plugin**: for Image scan
+- **Trivy Plugin**: for Image scan for more read.. https://vijetareigns.medium.com/securing-container-image-using-trivy-in-cicd-pipeline-fe445e18fb9a
 - **Email Extension Plugin**: For sending build notifications.
 
 
