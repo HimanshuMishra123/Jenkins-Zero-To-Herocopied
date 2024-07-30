@@ -163,7 +163,7 @@ pipeline {
         stage('Trivy Image Scan') {
             steps {
                 script {
-                    // Script method is used when trivy is configured in (manage jenkins>>configure system) 
+                    // script way of writing jenkins file concept is used when you use jenkins configure system(manage jenkins>>configure system) to configure the details of plugins installed(exaple: sonar url etc.), but it is suggested to use credentials if the data is to be kept secret.
                     trivyScan(
                         image: 'myapp:latest',
                         format: 'html',
