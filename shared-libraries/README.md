@@ -44,7 +44,7 @@ A Shared Library in Jenkins is a repository of common code that can be used acro
 
 
 - Jenkins shared library is maintained in seprate repo altogether as it is company wide not for single project.
-
+```
 jenkins-shared-library/
 │
 ├── src/
@@ -62,7 +62,7 @@ jenkins-shared-library/
 ├── resources/
 │   └── someResource.txt
 └── README.md
-
+```
 ### Configure Jenkins to Use the Shared Library
 1. Add Shared Library to Jenkins:
 
