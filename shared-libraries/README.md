@@ -64,8 +64,10 @@ jenkins-shared-library/
 └── README.md
 ```
 ### Configure Jenkins to Use the Shared Library
-1. Add Shared Library to Jenkins:
 
+   ![JENKINS SHARED LIBRARIES TUTORIAL _ WHAT IS SHARED LIBRARY IN JENKINS_ DEMO INCLUDED _ #devops #cicd 18-45 screenshot (1)](https://github.com/user-attachments/assets/1ad742a2-382f-4139-8582-02869457a1b6)
+   
+1. Add Shared Library to Jenkins:
 Go to "Manage Jenkins" > "Configure System."
 Scroll down to "Global Pipeline Libraries" and add a new library.
 Provide the necessary details (e.g., name(ex: my-shared-library), Default version(Branch name: main), Retrieval method: modern SCM, SCM: git, Project repository: Repo URL >> save).
