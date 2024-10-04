@@ -1,3 +1,5 @@
+// This Jenkins multibranch pipeline project automates code checkout, build, testing, security scans, Docker image creation, and deployment. It conditionally runs SonarQube and HCL AppScan on release branches only.
+
 pipeline {
     agent any
     environment {
@@ -27,12 +29,12 @@ pipeline {
             }
         }
 
-        stage('Sonarqube Test') {
+        stage('Automated Test') {
             when {
                 branch 'release/*'  // Only for release branches (for simple log use when)
              }
             steps {
-                echo 'Running security tests...'
+                echo 'Running Automated  tests...'
             }
         }
 
