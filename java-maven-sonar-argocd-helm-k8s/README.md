@@ -91,16 +91,17 @@ Example Configuration in GitHub:
 - Select the events that will trigger the webhook
 ```
 3. **Jenkins Pipeline Stages**:
-   - **Build Stage**: **(you can skip the installations and configurations because we are using Docker as agent and Docker images already contains all the necessary dependencies(example maven), configurations, and applications required for your workflow )
+   - **Build Stage**: **(you can skip the installations and configurations because we are using Docker as agent and Docker images already contains all the necessary dependencies(example maven), configurations, and applications required for your workflow ) isme docker image mein source code nhi hota hai, sirf agent specific chize hoti jo custom pack ki h
    ```
    pipeline {
       agent {
          docker {
             image 'abhishekf5/maven-abhishek-docker-agent:v1'
    ```
-     - Uses Maven to build the Java application.
+     - Uses Maven(has libraries required) to build the Java application.
      - Executes unit tests during the build process.(Maven+ Maven surefire Plugin +Junit +Jacoco)
-     - for unit test in build process include the Maven Surefire Plugin, JUnit, and JaCoCo dependencies in your pom.xml.
+     -Jacoco(java code coverage to see which part of your code is tested by your tests.)
+     - for unit test in build process include the Maven Surefire Plugin, JUnit, and JaCoCo dependencies in your pom.xml. 
      - Skip the mvn clean install or mvn package commands if the code is already compiled and available in the Docker image(if not then do it).
      -Directly run tests and generate reports using:
 
