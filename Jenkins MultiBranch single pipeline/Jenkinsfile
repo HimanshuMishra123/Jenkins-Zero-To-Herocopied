@@ -1,5 +1,5 @@
 // This Jenkins multibranch pipeline project automates code checkout, build, testing, security scans, Docker image creation, and deployment. It conditionally runs SonarQube and HCL AppScan on release branches only.
-@Library('my-shared-library') _ 
+@Library('my-shared-library') _   // to import everything from shared library
 pipeline {
     agent any
     environment {
