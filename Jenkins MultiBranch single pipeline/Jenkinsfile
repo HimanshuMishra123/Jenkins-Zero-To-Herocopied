@@ -1,0 +1,88 @@
+pipeline {
+    agent any
+    environment {
+        REGISTRY = 'your-docker-registry'
+        IMAGE_NAME = 'your-image-name'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    checkout scm
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Add your build commands here (e.g., maven, gradle, npm, etc.)
+            }
+        }
+
+        stage('Unit Test') {
+            steps {
+                echo 'Running Unit Tests...'
+                // Add your unit test commands here
+            }
+        }
+
+        stage('Sonarqube Test') {
+            when {
+                branch 'release/*'  // Only for release branches (for simple log use when)
+             }
+            steps {
+                echo 'Running security tests...'
+            }
+        }
+
+        stage('Branch-Specific complex Logic') {
+            steps {
+                script {
+                    if (env.BRANCH_NAME.startsWith('feature/')) {
+                        echo 'This is a feature branch. Skipping SonarQube and security tests.'
+                    } else if (env.BRANCH_NAME == 'main') {
+                        echo 'This is the main branch. Running basic build and tests only.'
+                        // You could add more specific logic for the 'main' branch here if needed.
+                    } else if (env.BRANCH_NAME.startsWith('release/')) {
+                        echo 'This is a release branch. Running full SonarQube and security scans.'
+                        // Trigger functions from shared library SonarQube and security test stages only for release branches.
+                        runSonarQube()
+                        runHCLAppScan()
+                    } else {
+                        echo 'Unknown branch. Skipping security tests and SonarQube.'
+                    }
+                }
+            }
+        }
+
+        stage('Image Build') {
+            steps {
+                echo 'Building Docker Image...'
+                // Docker build command
+                sh "docker build -t ${REGISTRY}/${IMAGE_NAME}:${env.BRANCH_NAME} ."
+            }
+        }
+
+        stage('Image Scan') {
+            steps {
+                echo 'Scanning Docker Image...'
+                // Add Docker image scanning tool commands (e.g., Trivy, Clair)
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                echo 'Pushing Docker Image...'
+                // Docker push command
+                sh "docker push ${REGISTRY}/${IMAGE_NAME}:${env.BRANCH_NAME}"
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline complete.'
+        }
+    }
+}
+
