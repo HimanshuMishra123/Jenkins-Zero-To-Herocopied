@@ -14,7 +14,7 @@ def runHCLAppScan() {
         -scanResult "appscan-results.xml" \
         -reportType xml
     '''
-    
+    // def is used in groovy that you intend to take variable here
     // Optionally, parse scan results to fail the build on critical vulnerabilities
     def scanResult = readFile('appscan-results.xml')
     if (scanResult.contains('<IssueSeverity>High</IssueSeverity>')) {

@@ -11,7 +11,7 @@ def runSonarQube() {
                            -Dsonar.host.url=http://your-sonarqube-server \
                            -Dsonar.login=your-sonarqube-token"
     }
-
+    // def is used in groovy that you intend to take variable here
     // Optionally, wait for SonarQube quality gate result
     timeout(time: 5, unit: 'MINUTES') {
         def qualityGate = waitForQualityGate()
