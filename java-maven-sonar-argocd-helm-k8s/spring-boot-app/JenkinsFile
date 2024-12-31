@@ -19,6 +19,18 @@ pipeline {
         // `mvn clean package` this maven target will find th pom.xml file(having all the dependencies/requirements for the code to run which will be downloaded from internet, it is mostly written by developer or sometime devops also)
         //`mvn clean package` or `mvn clean install` maven target will download each and every package from the internet depending upon the versions and depending upon the things that are provided in pom.xml and it will help Java in building the application. Building is basically creating  Java archive or web archive or Enterprise archive. these are all jar or ear or war files now how are these files/artifacts created that is basically using Maven and pom.xml. 
         // a new floder Target will be created in app folder/repo and inside this target folder the artifact is created/saved.  if you do `ls target`  you will see jar file and this file we have used in the docker file as well  to create docker image.
+        // 'mvn clean package' will compile your code and also package it. For example, if your pom says the project is a jar, it will create a jar for you when you package it and put it somewhere in the target directory (by default).
+        // 'mvn clean install' will compile and package, but it will also put the package in your local repository. This will make it so other projects can refer to it and grab it from your local repository.
+        // Coming to the difference between the commands package and install, you first need to understand the lifecycle of a maven project
+
+        //These are the default life cycle phases in maven:
+        //validate - validate the project is correct and all necessary information is available
+        //compile - compile the source code of the project
+        //test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
+        //package - take the compiled code and package it in its distributable format, such as a JAR.
+        //verify - run any checks on results of integration tests to ensure quality criteria are met
+        //install - install the package into the local repository, for use as a dependency in other projects locally
+        //deploy - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
         sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'   
       }
     }
